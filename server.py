@@ -24,13 +24,13 @@ async def get():
     return HTMLResponse(html)
 
 
-@app.websocket("/ws")
+@app.websocket("/translate")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
         try:
             data = await websocket.receive_json()
-            df = utils.records2df(data)
+            df = utils.records2df(data['coordinates'])
             result = predictor.predict(df)
             await websocket.send_text(result)
         except ValueError:

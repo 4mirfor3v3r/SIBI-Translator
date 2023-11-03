@@ -13,7 +13,7 @@ import utils
 files = glob.glob("landmarks\*\*.csv")
 
 async def main():
-    uri = "ws://localhost:8000/ws"
+    uri = "ws://localhost:8000/translate"
     async with websockets.connect(uri) as websocket:
         # file = random.choice(files)
         # print(file)
